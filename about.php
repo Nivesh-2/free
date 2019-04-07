@@ -3,21 +3,22 @@
 <head>
 	<title>Freeapp</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 	<style type="text/css">
 		*{
 			padding: 0;
 			margin: 0;
 		}
 		body{
-			background-color: #E0E0E0;
 			font-family: 'Montserrat', sans-serif;
 			line-height: 2.9em;
 			color: #000;
 			overflow: hidden;
+			background-image: url(wall.jpg);
+			background-size: cover;
+			background-attachment: fixed;
 		}
 		#nav{
-			background-color: #212121;
+			background-color: #fff;
 			box-shadow: 0 5px 8px 0 rgba(0, 0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
 		}
 		#nav ul{
@@ -33,13 +34,13 @@
 		}
 		#nav a{
 			text-decoration: none;
-			color: #757575;
+			color: #212121;
 			font-weight: bold;
 			padding-left: 20px;
 			font-size: 15px;
 		}
 		#nav a:hover{
-			color: #F5F5F5;
+			color: #757575;
 			font-weight: bold;
 		}
 		.cont{
@@ -111,17 +112,24 @@
 </head>
 <body>
 	<nav id="nav">
-
 		<ul>
 			<li><a href="" style="font-size: 24px;">LOGO</a></li>
 			<li><a href="index.php">HOME</a></li>
 			<li><a href="login.php">LOGIN</a></li>
-			<li><a href="about.php" style="color: #F5F5F5;">ABOUT US</a></li>
-			<li><a href="contact.php">CONTACT US</a></li>
+			<li><a href="about.php">ABOUT US</a></li>
+			<li><a href="contact.php" style="color: #757575;">CONTACT US</a></li>
 		</ul>
 	</nav>
-	<div style="width: 80%; margin: auto; padding-top: 30px; text-align: center;">
-		<h1 style="font-size: 40px;">About Us</h1>
+	<div style="width: 80%; margin: auto; padding-top: 30px; line-height: 30px; text-align: center;">
+		<h1 style="font-size: 50px;">Contact Us</h1><br>
+		<p style="font-size: 16px;">
+		Phone Number: 1234567890<br>
+		Email: afhklasdf<br>
+		</p><br>
+		<p style="font-size: 16px;">
+		Phone Number: 1234567890<br>
+		Email: afhklasdf<br>
+		</p>
 	</div>
 </body>
 </html>
