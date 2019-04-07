@@ -54,7 +54,7 @@
 		move_uploaded_file($tempApk, "apk/$apk_name");
 		move_uploaded_file($tempIcon, "icon/$icon_name");
 		move_uploaded_file($tempGraphic, "graphic/$graphic_name");
-		$sql = "INSERT INTO `upload-form`(`title`, `short`, `longDis`, `screenshots`, `icon`, `graphic`, `video`, `policy`, `apk`, `name`, `email`, `phone`) VALUES ('$title','$short','$long','$screenshotsName','$icon','$graphic','$video','$policy','$apk','$name','$email','$phone')";
+		$sql = "INSERT INTO `upload-form`(`title`, `short`, `longDis`, `screenshots`, `icon`, `graphic`, `video`, `policy`, `apk`, `name`, `email`, `phone`, `userId`) VALUES ('$title','$short','$long','$screenshotsName','$icon_name','$graphic_name','$video','$policy','$apk_name','$name','$email','$phone','$user_id')";
 
 		$sqlLogin = "INSERT INTO `login`(`name`, `email`, `userId`, `password`, `phone`) VALUES ('$name', '$email', '$user_id', '$generte_mixed', '$phone')" ;
 		$run = mysqli_query($conn, $sql);
@@ -63,14 +63,14 @@
 		$subject  = 'Username And Password';
 		$body = '<h4>User ID: </h4><p>' . $user_id .'</p>
 			<h4> Password: </h4><p>' . $generte_mixed. '</p>';
-		$mail = "";
+		$mail = "mittapallyn.min18@itbhu.ac.in";
 
 		$headers = "MIME-Version: 1.0" . "\r\n";
 		$headers .= "Content-Type:text/html;charset-UTF-8" . "\r\n";
 		$headers  .= "From: ". "Freeapp" .'<'.$mail.'>'."\r\n";
 
 		mail($email, $subject, $body, $headers);
-
+//linear-gradient(45deg,#9fbaa8,#31354c)
 		echo "<script>alert('Upload Successfully')</script>";
 	}
  ?>
@@ -89,14 +89,16 @@
 			margin: 0;
 		}
 		body{
-			background-color: #E0E0E0;
 			font-family: 'Montserrat', sans-serif;
 			line-height: 2.9em;
 			color: #000;
 			overflow: hidden;
+			background-image: url(wall.jpg);
+			background-size: cover;
+			background-attachment: fixed;
 		}
 		#nav{
-			background-color: #212121;
+			background-color: #fff;
 			box-shadow: 0 5px 8px 0 rgba(0, 0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
 		}
 		#nav ul{
@@ -111,31 +113,31 @@
 		}
 		#nav a{
 			text-decoration: none;
-			color: #757575;
+			color: #212121;
 			font-weight: bold;
 			padding-left: 20px;
 			font-size: 15px;
 		}
 		#nav a:hover{
-			color: #F5F5F5;
+			color: #757575;
 			font-weight: bold;
 		}
 		.cont{
 			width: 10%;
 		    margin: auto;
-		    margin-top: 200px;
+		    margin-top: 350px;
 		}
 		.form{
 			position: absolute;
 			font-size: 16px;
 			font-weight: bold;
 			font-family: 'Montserrat', sans-serif;
-			color: #DCEDC8;
+			color: #B3E5FC;
 			height: 60px;
-			width: 150px;
+			width: 200px;
 			border:0;
-			background-color: #7CB342;
-			border-radius: 10px;
+			background-color: #0288D1;
+			border-radius: 100px;
 			outline: 0;
 			cursor: pointer;
 		}
@@ -148,11 +150,23 @@
 			bottom: -100%;
 			width: 100%;
 			height: 100vh;
-			background-image: linear-gradient(45deg,#9fbaa8,#31354c);
+			background-image: url(wall.jpg);
+			background-size: cover;
+			background-attachment: fixed;
 			transition: 0.3s;
 		}
+		.box{
+			width: 50%;
+			margin: auto;
+			padding: 50px;
+			padding: 30px;
+			margin-top: 30px;
+			border-radius: 50px;
+			box-shadow: 0 5px 8px 0 rgba(0, 0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+			background: rgba(0,0,0,.1); 
+		}
 		.upload-form{
-			width: 40%;
+			width: 100%;
 			margin: auto;
 		}
 		.hide-upload-btn{
@@ -179,9 +193,11 @@
 		{
 			padding: 14px;
 			border: none;
-			border-radius: 5px;
-			background: #212121;
-			color: #E0E0E0;
+			border-radius: 30px;
+			background: rgba(0,0,0,0.4);
+			outline: none;
+			color: #fff;
+			width: 250px;
 			font-weight: bold;
 			font-family: 'Montserrat', sans-serif;
 		}
@@ -192,32 +208,32 @@
 
 		<ul>
 			<li><a href="" style="font-size: 24px;">LOGO</a></li>
-			<li><a href="index.php" id="active" style="color: #F5F5F5;">HOME</a></li>
+			<li><a href="index.php" id="active" style="color: #757575;">HOME</a></li>
 			<li><a href="login.php">LOGIN</a></li>
 			<li><a href="about.php">ABOUT US</a></li>
 			<li><a href="contact.php">CONTACT US</a></li>
 		</ul>
 	</nav>
 	<div class="cont">
-		<button class="form" style="height: 60px;">Upload Here!</button>
+		<button class="form" style="height: 55px;">Upload Here!</button>
 	</div>
 	<div class="upload-box">
 		<div class="hide-upload-btn"><i class="fas fa-times"></i></div>
-		<h1 class="upload-form" style="padding: 30px; padding-bottom: 0px; ">Upload Here!</h1>
-		<div>
+		<div class="box">
+			<h1 class="upload-form" style="padding: 30px; padding-bottom: 0px; ">Upload Here!</h1>
 			<form method="post" action="#" enctype="multipart/form-data">
 				<div class="upload-form" style="overflow: auto; height: 70%; box-sizing: border-box; padding-right: 50px; padding-bottom: 20px;">
 					<div>
 						<label style="font-weight: bold;">Title*</label><br>
-						<input style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" type="text" name="title" placeholder="Enter Title of Your App" required="" autocomplete="off">
+						<input style="padding: 10px; width: 100%; font-size: 14px; border-radius: 20px; border: none; outline: none;" type="text" name="title" placeholder="Enter Title of Your App" required="" autocomplete="off">
 					</div>
 					<div>
 						<label style="font-weight: bold;">Short Description*</label>
-						<textarea style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" rows="2" placeholder="Write a short description about the app" name="short" required="" autocomplete="off"></textarea>
+						<textarea style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none; outline: none;" rows="2" placeholder="Write a short description about the app" name="short" required="" autocomplete="off"></textarea>
 					</div>
 					<div>
 						<label style="font-weight: bold;">Long Description*</label>
-						<textarea style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" rows="5" placeholder="Write some description about the app" name="long" required="" autocomplete="off"></textarea>
+						<textarea style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none ;outline: none;" rows="5" placeholder="Write some description about the app" name="long" required="" autocomplete="off"></textarea>
 					</div>
 					<div>
 	      				<label style="font-weight: bold;">Screenshots*</label><br>
@@ -236,12 +252,12 @@
 	    			</div> 
 	    			<div>
 						<label style="font-weight: bold;">Promo Video</label><br>
-						<input style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" type="text" name="promo" placeholder="https://">
+						<input style="padding: 10px; width: 100%; font-size: 14px; border-radius: 20px; border: none; outline: none;" type="text" name="promo" placeholder="https://">
 						<small style="line-height: 17px;">Enter the promo video link</small>
 					</div>   			
 					<div>
 						<label style="font-weight: bold;">Private Policy</label><br>
-						<input style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" type="text" name="policy" placeholder="https://">
+						<input style="padding: 10px; width: 100%; font-size: 14px; border-radius: 20px; border: none; outline: none;" type="text" name="policy" placeholder="https://">
 						<small style="line-height: 17px;">Enter the private policy link</small>
 					</div>
 					<div>
@@ -254,20 +270,20 @@
 						<div style="width: 80%; margin: auto;">
 							<div>
 								<label style="font-weight: bold;">Name</label><br>
-								<input type="text" style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" name="user" placeholder="Enter Developer's Name" required="" autocomplete="on">
+								<input type="text" style="padding: 10px; width: 100%; font-size: 14px; border-radius: 20px; border: none; outline: none;" name="user" placeholder="Enter Developer's Name" required="" autocomplete="on">
 							</div>
 							<div>
 								<label style="font-weight: bold;">Email</label><br>
-								<input type="email" style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" name="email" placeholder="Enter Developer's Email" required="" autocomplete="on">
+								<input type="email" style="padding: 10px; width: 100%; font-size: 14px; border-radius: 20px; border: none; outline: none;" name="email" placeholder="Enter Developer's Email" required="" autocomplete="on">
 							</div>
 							<div>
 								<label style="font-weight: bold;">Phone Number</label><br>
-								<input type="text" style="padding: 10px; width: 100%; font-size: 14px; border-radius: 6px; border: none;" name="phone" placeholder="Enter Developer's Phone Number" required="" autocomplete="on">
+								<input type="text" style="padding: 10px; width: 100%; font-size: 14px; border-radius: 20px; border: none; outline: none;" name="phone" placeholder="Enter Developer's Phone Number" required="" autocomplete="on">
 							</div>
 						</div>
 					</div>
-				</div>
-				<div style="width: 40%; margin: auto;">
+					<input type="checkbox" name="" id="policy" required="">
+					<label for="policy">Read the <a href="">Private Policy</a></label><br>
 					<small>* Marked things are must.</small><br>
 					<button style="padding: 16px; font-weight: bold; margin-top: 2px; border: none; border-radius: 6px; outline: none; background: #212121; color: #E0E0E0; font-family: 'Montserrat', sans-serif;" name="submit">SUBMIT</button>
 				</div>
