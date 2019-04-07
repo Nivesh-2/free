@@ -1,15 +1,8 @@
 <?php 
 	session_start();
-	if ($_SESSION['user_id'] != ''and $_SESSION['password'] != '') {
-		# code...
-		header('location:dashboard.php');
-
-	}
 	if(filter_has_var(INPUT_POST, "login")){
 		$password = htmlspecialchars($_POST['pass']);
 		$userId = htmlspecialchars($_POST['user']);
-		$_SESSION['user_id'] = $userId;
-		$_SESSION['password'] = $password;
 
 		$conn = mysqli_connect("localhost","root", '123456', 'freeapp');
 
@@ -21,18 +14,22 @@
 		$result = mysqli_query($conn, $sql);
 		$count = mysqli_num_rows($result);
 		if ($count === 1) {
+			$_SESSION['user_id'] = $userId;
+			$_SESSION['password'] = $password;
 			header('location:dashboard.php');
 		}
 		else {
 			echo "<script> alert('cant able to login')</script>";
 		}
 	}
+
+
+
  ?>
 <!DOCTYPE>
 <html>
 <head>
 	<title>Freeapp</title>
-	<link rel="stylesheet" type="text/css" href="login.css">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<style type="text/css">
 		*{
@@ -40,14 +37,16 @@
 			margin: 0;
 		}
 		body{
-			background-color: #E0E0E0;
 			font-family: 'Montserrat', sans-serif;
 			line-height: 2.9em;
 			color: #000;
 			overflow: hidden;
+			background-image: url(wall.jpg);
+			background-size: cover;
+			background-attachment: fixed;
 		}
 		#nav{
-			background-color: #212121;
+			background-color: #fff;
 			box-shadow: 0 5px 8px 0 rgba(0, 0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
 		}
 		#nav ul{
@@ -63,13 +62,13 @@
 		}
 		#nav a{
 			text-decoration: none;
-			color: #757575;
+			color: #212121;
 			font-weight: bold;
 			padding-left: 20px;
 			font-size: 15px;
 		}
 		#nav a:hover{
-			color: #F5F5F5;
+			color: #757575;
 			font-weight: bold;
 		}
 		.cont{
@@ -137,6 +136,54 @@
 			font-weight: bold;
 			font-family: 'Montserrat', sans-serif;
 		}
+		.box{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			width: 400px;
+			padding: 40px;
+			background: rgba(0,0,0,.1);
+			box-sizing: border-box;
+			border-radius: 10px;
+			box-shadow: 0 5px 8px 0 rgba(0, 0,0,0.2),0 7px 20px 0 rgba(0,0,0,0.17);
+		}
+		.box h1{
+			margin-bottom: 30px;
+			text-align: center;
+			color: #000;
+		}
+		.box .inputBox {
+			position: relative;
+		}
+		.box .inputBox input{
+			width: 100%;
+			font-size: 16px;
+			padding: 8px;
+			background: transparent;
+			border:none;
+			margin-bottom: 20px;
+			outline: none;
+			border-bottom: 2px solid #000;
+		}
+		.box .inputBox label{
+			position: absolute;
+			top: 0;
+			left: 0;
+			font-weight: bold;
+			font-size: 16px;
+			padding: 8px;
+			padding-top: 0px;
+			pointer-events: none;
+			transition: .5s;
+		}
+		.box .inputBox input:focus ~ label,
+		.box .inputBox input:valid ~ label{
+			top: -40%;
+			left: 0;
+			color: #000;
+			font-size: 12px;
+		}
 	</style>
 </head>
 <body>
@@ -144,7 +191,7 @@
 		<ul>
 			<li><a href="" style="font-size: 24px;">LOGO</a></li>
 			<li><a href="index.php">HOME</a></li>
-			<li><a href="login.php" style="color: #F5F5F5;">LOGIN</a></li>
+			<li><a href="login.php" style="color: #757575;">LOGIN</a></li>
 			<li><a href="about.php">ABOUT US</a></li>
 			<li><a href="contact.php">CONTACT US</a></li>
 		</ul>
